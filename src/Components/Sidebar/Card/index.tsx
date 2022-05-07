@@ -3,10 +3,12 @@ import { FunctionComponent } from "react";
 import StyledSidebarCard from "./styles";
 import { SidebarCardProps } from "./types";
 
-export const SidebarCard: FunctionComponent<SidebarCardProps> = () => {
+export const SidebarCard: FunctionComponent<SidebarCardProps> = ({
+  children,
+}) => {
   return (
     <StyledSidebarCard elevation={5}>
-      <CardContent>dsadasdasdasdas</CardContent>
+      <CardContent>{children}</CardContent>
     </StyledSidebarCard>
   );
 };
