@@ -9,9 +9,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-import ThemeProvider from './Style/ThemeProvider'
-
-import Paper from "./Components/Global/Paper";
+import App from "./Templates/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,11 +17,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <Paper elevation={0}>
-        <div>xqstock-app</div>
-      </Paper>
-    </ThemeProvider>
+    <App />
   </React.StrictMode>
 );
 
