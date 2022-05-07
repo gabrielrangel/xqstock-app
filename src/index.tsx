@@ -7,13 +7,19 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
+
+import theme from "./Style/theme";
+
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
   <React.StrictMode>
-    <div>xqstock-app</div>
+    <ThemeProvider theme={theme}>
+      <div>xqstock-app</div>
+    </ThemeProvider>
   </React.StrictMode>
 );
 
