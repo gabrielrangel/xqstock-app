@@ -4,11 +4,11 @@ import Button from "@mui/material/Button/Button";
 import SidebarButtonProps from "./types";
 
 export default styled(Button)<SidebarButtonProps>`
-  width: 100%;
   box-sizing: border-box
   display: flex;
   border-radius: 10px;
   text-transform: none;
+  flex-grow: 1;
 
   margin: ${({ theme }) => theme.spacing(1)};
   padding:
