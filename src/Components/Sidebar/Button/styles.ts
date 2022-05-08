@@ -1,9 +1,11 @@
 import getOppositePalletteMode from "../../../Util/getOppositePalletteMode";
 import styled from "@emotion/styled";
-import Button from "@mui/material/Button/Button";
-import SidebarButtonProps from "./types";
+import Button, { ButtonProps } from "@mui/material/Button/Button";
+import { MUIStyledCommonProps } from "@mui/system/createStyled";
 
-export default styled(Button)<SidebarButtonProps>`
+export default styled(Button)<
+  MUIStyledCommonProps & { selected: boolean } & Omit<ButtonProps, "sx">
+>`
   box-sizing: border-box
   display: flex;
   border-radius: 10px;
@@ -25,11 +27,15 @@ export default styled(Button)<SidebarButtonProps>`
       theme.palette.primary[getOppositePalletteMode(theme)]}10;
   }
 
-  .button-text{
+  .MuiTypography-root{
     color: ${({ theme }) => theme.palette.primary.main};
     text-align: left;
     flex-grow: 1;
-    font-family: 'Poppins';
-    font-weight: 600;
+    font-family: 'Poppins', Verdana;
+    font-weight: 400;
+  }
+
+  .MuiSvgIcon-root {
+    font-size: 25px
   }
 `;
