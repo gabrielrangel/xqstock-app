@@ -6,6 +6,8 @@ import Sidebar from "../Components/Sidebar";
 import ThemeProvider from "../Style/ThemeProvider";
 import Dashboard from "./Dashboard";
 import NotFound from "./NotFound";
+import Starred from "./Starred";
+import History from "./History";
 
 export const App: FunctionComponent = () => (
   <BrowserRouter>
@@ -19,6 +21,8 @@ export const App: FunctionComponent = () => (
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/Dashboard" element={<Dashboard />} />
+              <Route path="/Starred" element={<Starred />} />
+              <Route path="/History" element={<History />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Grid>

@@ -1,9 +1,9 @@
 import getOppositePalletteMode from "../../../Util/getOppositePalletteMode";
 import styled from "@emotion/styled";
 import Button from "@mui/material/Button/Button";
-import SidebarButtonProps from "./types";
+import { MUIStyledCommonProps } from "@mui/system/createStyled";
 
-export default styled(Button)<SidebarButtonProps>`
+export default styled(Button)<MUIStyledCommonProps & { selected: boolean }>`
   box-sizing: border-box
   display: flex;
   border-radius: 10px;
