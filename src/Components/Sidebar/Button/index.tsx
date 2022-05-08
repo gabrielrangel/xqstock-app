@@ -4,6 +4,11 @@ import SidebarButtonProps from "./types";
 
 export const SidebarButton: FunctionComponent<SidebarButtonProps> = ({
   selected,
-}) => <Button selected={selected}>aaaa</Button>;
+  text,
+}) => (
+  <Button selected={selected}>
+    <p className="button-text">{text}</p>
+  </Button>
+);
 
 export default SidebarButton;

@@ -1,12 +1,13 @@
 import { Card } from "@mui/material";
 import { styled } from "@mui/system";
 
-export const StyledSidebarCard = styled(Card)(({ theme }) => ({
-  color: theme.palette.primary.contrastText,
-  backgroundColor: `${theme.palette.primary[theme.palette.mode]}35`,
-  height: "100vh",
-  borderTopLeftRadius: 0,
-  borderBottomLeftRadius: 0,
-}));
+export const StyledSidebarCard = styled(Card)`
+  background-color: ${({ theme }) =>
+    theme.palette.mode === "dark" ? "#212121" : "#f5f5f5"};
+  height: 100vh;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-image: none;
+`;
 
 export default StyledSidebarCard;

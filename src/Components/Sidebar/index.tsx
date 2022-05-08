@@ -7,8 +7,8 @@ export const Sidebar: FunctionComponent = () => {
   return (
     <SidebarCard>
       <Logo />
-      <Button selected={false} />
-      <Button selected={true} />
+      <Button selected={false} text="Link 1" />
+      <Button selected={true} text="Link 2" />
     </SidebarCard>
   );
 };
