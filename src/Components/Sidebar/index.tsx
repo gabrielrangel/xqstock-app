@@ -9,9 +9,9 @@ export const Sidebar: FunctionComponent = () => {
     <SidebarCard>
       <Logo />
       <SidebarButtonGroup>
-        <Button selected={false} text="Dashboard" path="/Dashboard" />
-        <Button selected={true} text="Favoritos" path="/Starred" />
-        <Button selected={false} text="Histórico" path="/History" />
+        <Button text="Dashboard" path="/Dashboard" />
+        <Button text="Favoritos" path="/Starred" />
+        <Button text="Histórico" path="/History" />
       </SidebarButtonGroup>
     </SidebarCard>
   );
