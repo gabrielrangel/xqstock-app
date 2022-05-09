@@ -3,6 +3,6 @@ import styled from "@mui/system/styled";
 
 export default styled(AppBar)<AppBarProps>`
   background-color: ${({ theme }) =>
-    theme.palette.common[theme.palette.mode === "dark" ? "black" : "white"]}1;
+    theme.palette.common[theme.palette.mode === "dark" ? "black" : "white"]}e;
   color: ${({ theme }) => theme.palette.primary.main};
 `;

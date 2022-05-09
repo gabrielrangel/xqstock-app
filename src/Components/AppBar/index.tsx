@@ -10,7 +10,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 export const AppBar: FunctionComponent = () => {
   const theme = useTheme();
   return (
-    <StyledAppBar position={"relative"} enableColorOnDark={true}>
+    <StyledAppBar position={"sticky"} enableColorOnDark={true}>
       <ButtonGroup>
         <Button>
           <GitHubIcon />
