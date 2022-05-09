@@ -20,20 +20,31 @@ export const ThemeContextProvider: FunctionComponent<
   Omit<ThemeProviderProps, "theme">
 > = ({ children, ...props }) => {
   const prefersDarkModeSchemeMQ = useMediaQuery("(prefers-color-scheme: dark)");
-  const [prefersDarkModeSchemeUI, setPrefersDarkModeSchemeUI] =
-    useState<boolean>(false);
 
-  const theme = useMemo(
-    () =>
-      getDesignTokens(
-        prefersDarkModeSchemeUI || prefersDarkModeSchemeMQ ? "dark" : "light"
-      ),
-    [prefersDarkModeSchemeMQ, prefersDarkModeSchemeUI]
-  );
+  const [prefersDarkModeSchemeUI, setPrefersDarkModeSchemeUI] = useState<
+    boolean | undefined
+  >();
+
+  const theme = useMemo(() => {
+    const prefersDarkMode =
+      prefersDarkModeSchemeUI === undefined
+        ? prefersDarkModeSchemeMQ
+        : prefersDarkModeSchemeUI;
+
+    return getDesignTokens(prefersDarkMode ? "dark" : "light");
+  }, [prefersDarkModeSchemeMQ, prefersDarkModeSchemeUI]);
 
   const toggleDarkMode = useCallback(() => {
-    setPrefersDarkModeSchemeUI(!prefersDarkModeSchemeUI);
-  }, [prefersDarkModeSchemeUI, setPrefersDarkModeSchemeUI]);
+    setPrefersDarkModeSchemeUI(
+      prefersDarkModeSchemeUI === undefined
+        ? !prefersDarkModeSchemeMQ
+        : !prefersDarkModeSchemeUI
+    );
+  }, [
+    prefersDarkModeSchemeMQ,
+    prefersDarkModeSchemeUI,
+    setPrefersDarkModeSchemeUI,
+  ]);
 
   return (
     <ThemeContext.Provider value={{ toggleDarkMode, theme }}>
