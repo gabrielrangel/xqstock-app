@@ -1,15 +1,15 @@
 import { FunctionComponent } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Paper from "../Components/Global/Paper";
-import ThemeProvider from "../Style/ThemeProvider";
 import Dashboard from "./Dashboard";
 import NotFound from "./NotFound";
 import Starred from "./Starred";
 import History from "./History";
 import PageGrid from "../Components/Global/PageGrid";
+import ThemeContextProvider from "../Context/ThemeContext";
 
 export const App: FunctionComponent = () => (
-  <ThemeProvider>
+  <ThemeContextProvider>
     <Paper elevation={0}>
       <BrowserRouter>
         <PageGrid>
@@ -23,7 +23,7 @@ export const App: FunctionComponent = () => (
         </PageGrid>
       </BrowserRouter>
     </Paper>
-  </ThemeProvider>
+  </ThemeContextProvider>
 );
 
 export default App;
