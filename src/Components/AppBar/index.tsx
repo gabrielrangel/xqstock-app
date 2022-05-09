@@ -8,11 +8,15 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import useThemeContext from "../../Hooks/useThemeContext";
 
 export const AppBar: FunctionComponent = () => {
+  const { REACT_APP_XQSTOCK_APP_REPO } = process.env;
   const { theme, toggleDarkMode } = useThemeContext();
+
   return (
     <StyledAppBar position={"sticky"} enableColorOnDark={true}>
       <ButtonGroup>
-        <Button>
+        <Button
+          onClick={() => window.open(REACT_APP_XQSTOCK_APP_REPO, "_blank")}
+        >
           <GitHubIcon />
         </Button>
         <Button onClick={toggleDarkMode}>
