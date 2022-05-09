@@ -1,10 +1,19 @@
-import Box, { BoxProps } from "@mui/material/Box";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import { FunctionComponent } from "react";
-import DashboardFilterGroup from "src/Components/Dashboard/FilterGroup";
+
+import {
+  DashboardFilterCard,
+  DashboardFilterGroup,
+} from "src/Components/Dashboard";
 
 export const Dashboard: FunctionComponent = () => (
   <Box>
-    <DashboardFilterGroup />
+    <DashboardFilterGroup>
+      <DashboardFilterCard title={"card"} options={<Button />}>
+        <>ola</>
+      </DashboardFilterCard>
+    </DashboardFilterGroup>
   </Box>
 );
 
