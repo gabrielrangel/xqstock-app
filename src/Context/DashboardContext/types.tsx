@@ -1,8 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
-import { IXqStockApiAsset } from "src/Services/XqStockApi/types";
-
-type Assets = IXqStockApiAsset | undefined;
+import { Dispatch } from "react";
+import { AssetAction, AssetState } from "../../Reducers/AssetReducer/types";
 
 export interface DashboardContextValue {
-  assetsState: [Assets, Dispatch<Assets>];
+  assetsState: [AssetState, Dispatch<AssetAction>];
 }
