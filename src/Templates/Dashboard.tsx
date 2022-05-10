@@ -5,14 +5,17 @@ import { FunctionComponent } from "react";
 import {
   DashboardFilterCard,
   DashboardFilterGroup,
+  AssetFilter,
+  IndexFilter,
+  DateFilter,
 } from "src/Components/Dashboard";
 
 export const Dashboard: FunctionComponent = () => (
   <Box>
     <DashboardFilterGroup>
-      <DashboardFilterCard title={"card"} options={<Button />}>
-        <>ola</>
-      </DashboardFilterCard>
+      <AssetFilter />
+      <IndexFilter />
+      <DateFilter />
     </DashboardFilterGroup>
   </Box>
 );

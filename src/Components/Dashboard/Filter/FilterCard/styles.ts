@@ -2,4 +2,6 @@ import Paper, { PaperProps } from "@mui/material/Paper";
 import styled from "@emotion/styled";
 import FilterCardProps from "./types";
 
-export default styled(Paper)<PaperProps & { grow?: boolean }>``;
+export default styled(Paper)<PaperProps & { grow?: boolean }>`
+  flex-grow: ${({ grow = false }) => (grow ? 2 : 1)};
+`;

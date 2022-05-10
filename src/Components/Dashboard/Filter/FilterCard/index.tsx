@@ -8,8 +8,9 @@ export const DashboardFilterCard: FunctionComponent<FilterCardProps> = ({
   children,
   title,
   options,
+  grow,
 }) => (
-  <StyledPaper elevation={1}>
+  <StyledPaper elevation={3} grow={grow}>
     <Box className="header">
       <Typography>{title}</Typography>
       <Box className="options">{options}</Box>
