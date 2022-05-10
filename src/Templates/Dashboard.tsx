@@ -2,20 +2,23 @@ import { FunctionComponent } from "react";
 import Box from "@mui/material/Box";
 
 import {
-  DashboardFilterGroup,
   AssetFilter,
-  IndexFilter,
+  DashboardFilterGroup,
   DateFilter,
+  IndexFilter,
 } from "src/Components/Dashboard";
+import DashboardContextProvider from "../Context/DashboardContext";
 
 export const Dashboard: FunctionComponent = () => (
-  <Box>
-    <DashboardFilterGroup>
-      <AssetFilter />
-      <IndexFilter />
-      <DateFilter />
-    </DashboardFilterGroup>
-  </Box>
+  <DashboardContextProvider>
+    <Box>
+      <DashboardFilterGroup>
+        <AssetFilter />
+        <IndexFilter />
+        <DateFilter />
+      </DashboardFilterGroup>
+    </Box>
+  </DashboardContextProvider>
 );
 
 export default Dashboard;

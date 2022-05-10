@@ -9,7 +9,17 @@ export default styled(Paper)<PaperProps & { grow?: boolean }>`
   .MuiTypography-root {
     color: ${({ theme }) =>
       theme.palette.secondary[getOppositePalletteMode(theme)]};
-    font-family: "Poppins" . Verdana;
+    font-family: "Poppins", Verdana, sans-serif;
+    flex-grow: 1;
+  }
+
+  .header {
+    display: flex;
+
+    .options {
+      display: flex;
+      gap: ${({ theme }) => theme.spacing(1)};
+    }
   }
 
   .content {

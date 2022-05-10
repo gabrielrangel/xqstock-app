@@ -1,19 +1,26 @@
-import { createContext, FunctionComponent, ReactNode, useReducer } from "react";
+import {
+  createContext,
+  FunctionComponent,
+  ReactNode,
+  useReducer,
+  useState,
+} from "react";
 import { DashboardContextValue } from "./types";
 import { assetReducer } from "../../Reducers/AssetReducer";
 import { AssetState } from "../../Reducers/AssetReducer/types";
 
-const DashboardContext = createContext<DashboardContextValue>(
+export const DashboardContext = createContext<DashboardContextValue>(
   {} as DashboardContextValue
 );
 
 export const DashboardContextProvider: FunctionComponent<{
   children: ReactNode;
 }> = ({ children }) => {
-  const assetsState = useReducer(assetReducer, {} as AssetState);
+  const assetsStateReducer = useReducer(assetReducer, {} as AssetState);
+  const showInputState = useState<boolean>(false);
 
   return (
-    <DashboardContext.Provider value={{ assetsState }}>
+    <DashboardContext.Provider value={{ assetsStateReducer, showInputState }}>
       {children}
     </DashboardContext.Provider>
   );
