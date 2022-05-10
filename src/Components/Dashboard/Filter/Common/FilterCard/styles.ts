@@ -11,4 +11,8 @@ export default styled(Paper)<PaperProps & { grow?: boolean }>`
       theme.palette.secondary[getOppositePalletteMode(theme)]};
     font-family: "Poppins" . Verdana;
   }
+
+  .content {
+    display: flex;
+  }
 `;

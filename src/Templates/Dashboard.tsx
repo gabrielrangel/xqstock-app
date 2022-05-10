@@ -1,9 +1,7 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import { FunctionComponent } from "react";
+import Box from "@mui/material/Box";
 
 import {
-  DashboardFilterCard,
   DashboardFilterGroup,
   AssetFilter,
   IndexFilter,
