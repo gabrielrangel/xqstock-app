@@ -1,1 +1,1 @@
-export * from "./getAssets";
+export * from "./sendRequest";
