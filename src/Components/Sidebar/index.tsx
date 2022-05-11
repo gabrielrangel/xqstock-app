@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { SidebarCard } from "./Card";
-import Logo from "../Global/Logo";
+import Logo from "../Logo";
 import Button from "./Button";
 import SidebarButtonGroup from "./ButtonGroup";
 import SsidChartIcon from "@mui/icons-material/SsidChart";

@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import { FunctionComponent, ReactNode } from "react";
-import AppBar from "../../AppBar";
-import Sidebar from "../../Sidebar";
+import AppBar from "../AppBar";
+import Sidebar from "../Sidebar";
 import StyledGrid from "./styles";
 
 export const PageGrid: FunctionComponent<{ children: ReactNode }> = ({

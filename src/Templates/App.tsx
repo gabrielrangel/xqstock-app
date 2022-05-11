@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Paper from "../Components/Global/Paper";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Paper from "../Components/Paper";
 import Dashboard from "./Dashboard";
 import NotFound from "./NotFound";
 import Starred from "./Starred";
 import History from "./History";
-import PageGrid from "../Components/Global/PageGrid";
+import PageGrid from "../Components/PageGrid";
 import ThemeContextProvider from "../Context/ThemeContext";
 
 export const App: FunctionComponent = () => (
