@@ -1,10 +1,10 @@
 import { Dispatch, SyntheticEvent } from "react";
-import { ISymbolMetadata } from "../../../../Services/XqStockApi/types";
+import { ISymbolMetadata } from "../../../Services/XqStockApi/types";
 import {
   SymbolMetadataAction,
   SymbolMetadataActionKind,
   SymbolMetadataState,
-} from "../../../../Reducers/SymbolMetadataReducer";
+} from "../../../Reducers/SymbolMetadataReducer";
 
 export function onMetadataAutoCompleteChange(
   event: SyntheticEvent<Element, Event>,

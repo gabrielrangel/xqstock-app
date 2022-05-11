@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import {
   DashboardFilterGroup,
   DateIntervalFilter,
-  IndexMetadataFilter,
   StockMetadataFilter,
 } from "src/Components/Dashboard";
 import DashboardContextProvider from "../Context/DashboardContext";
@@ -14,7 +13,6 @@ export const Dashboard: FunctionComponent = () => (
     <Box>
       <DashboardFilterGroup>
         <StockMetadataFilter />
-        <IndexMetadataFilter />
         <DateIntervalFilter />
       </DashboardFilterGroup>
     </Box>

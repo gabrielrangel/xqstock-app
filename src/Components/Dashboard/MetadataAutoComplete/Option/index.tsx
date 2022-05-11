@@ -1,4 +1,4 @@
-import { ISymbolMetadata } from "../../../../../Services/XqStockApi/types";
+import { ISymbolMetadata } from "../../../../Services/XqStockApi/types";
 import Option from "./styles";
 import Typography from "@mui/material/Typography/Typography";
 import Chip from "@mui/material/Chip";

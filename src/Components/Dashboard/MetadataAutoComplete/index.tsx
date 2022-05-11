@@ -8,9 +8,9 @@ import {
   useState,
 } from "react";
 
-import { SymbolMetadataState } from "../../../../Reducers/SymbolMetadataReducer";
+import { SymbolMetadataState } from "../../../Reducers/SymbolMetadataReducer";
 
-import { ISymbolMetadata } from "../../../../Services/XqStockApi/types";
+import { ISymbolMetadata } from "../../../Services/XqStockApi/types";
 import MetadataInputOption from "./Option";
 import MetadataAutoCompleteProps from "./types";
 import MetadataAutoCompleteInput from "./Input";

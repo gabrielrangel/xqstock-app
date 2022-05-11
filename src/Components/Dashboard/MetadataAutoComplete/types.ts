@@ -1,7 +1,7 @@
 import {
   SymbolMetadataAction,
   SymbolMetadataState,
-} from "../../../../Reducers/SymbolMetadataReducer";
+} from "../../../Reducers/SymbolMetadataReducer";
 import { Dispatch } from "react";
 
 export interface MetadataAutoCompleteProps {
