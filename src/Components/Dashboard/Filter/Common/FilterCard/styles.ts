@@ -2,7 +2,9 @@ import Paper, { PaperProps } from "@mui/material/Paper";
 import { styled } from "@mui/system";
 import getOppositePaletteMode from "src/Util/getOppositePaletteMode";
 
-export default styled(Paper)<PaperProps & { grow?: boolean }>`
+export default styled(Paper, {
+  shouldForwardProp: (prop) => prop !== "grow",
+})<PaperProps & { grow?: boolean }>`
   flex-grow: ${({ grow = false }) => (grow ? 2 : 1)};
   padding: ${({ theme }) => theme.spacing(2)};
 
