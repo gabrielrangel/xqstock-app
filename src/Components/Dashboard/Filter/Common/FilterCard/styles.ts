@@ -1,6 +1,6 @@
 import Paper, { PaperProps } from "@mui/material/Paper";
 import { styled } from "@mui/system";
-import getOppositePalletteMode from "src/Util/getOppositePalletteMode";
+import getOppositePaletteMode from "src/Util/getOppositePaletteMode";
 
 export default styled(Paper)<PaperProps & { grow?: boolean }>`
   flex-grow: ${({ grow = false }) => (grow ? 2 : 1)};
@@ -8,7 +8,7 @@ export default styled(Paper)<PaperProps & { grow?: boolean }>`
 
   .MuiTypography-root {
     color: ${({ theme }) =>
-      theme.palette.secondary[getOppositePalletteMode(theme)]};
+      theme.palette.secondary[getOppositePaletteMode(theme)]};
     font-family: "Poppins", Verdana, sans-serif;
     flex-grow: 1;
   }

@@ -1,4 +1,4 @@
-import getOppositePalletteMode from "../../../Util/getOppositePalletteMode";
+import getOppositePaletteMode from "../../../Util/getOppositePaletteMode";
 import styled from "@emotion/styled";
 import Button, { ButtonProps } from "@mui/material/Button/Button";
 import { MUIStyledCommonProps } from "@mui/system/createStyled";
@@ -18,13 +18,11 @@ export default styled(Button)<
     ${({ theme }) => theme.spacing(2)};
   
   background-color: ${({ selected, theme }) =>
-    selected
-      ? theme.palette.primary[getOppositePalletteMode(theme)]
-      : "none"}15;
+    selected ? theme.palette.primary[getOppositePaletteMode(theme)] : "none"}15;
 
   :hover {
     background-color: ${({ theme }) =>
-      theme.palette.primary[getOppositePalletteMode(theme)]}10;
+      theme.palette.primary[getOppositePaletteMode(theme)]}10;
   }
 
   .MuiTypography-root{
