@@ -1,27 +1,20 @@
 import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
+
+import { FunctionComponent, SyntheticEvent, useEffect, useState } from "react";
 
 import {
-  Dispatch,
-  FunctionComponent,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
-
-import {
-  SymbolMetadataAction,
   SymbolMetadataActionKind,
   SymbolMetadataState,
 } from "../../../../../Reducers/SymbolMetadataReducer";
+
 import { ISymbolMetadata } from "../../../../../Services/XqStockApi/types";
 import MetadataInputOption from "./Option";
+import MetadataAutoCompleteProps from "./types";
+import MetadataAutoCompleteInput from "./Input";
 
-export const MetadataInput: FunctionComponent<{
-  placeholder: string;
-  fetchOptions: (input: string) => Promise<SymbolMetadataState>;
-  valueReducer: [SymbolMetadataState, Dispatch<SymbolMetadataAction>];
-}> = ({ placeholder, fetchOptions, valueReducer }) => {
+export const MetadataAutoComplete: FunctionComponent<
+  MetadataAutoCompleteProps
+> = ({ placeholder, fetchOptions, valueReducer }) => {
   const [options, setOptions] = useState<SymbolMetadataState>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [value, dispatchValue] = valueReducer;
@@ -39,7 +32,7 @@ export const MetadataInput: FunctionComponent<{
       value={value}
       options={options}
       renderInput={(params) => (
-        <TextField {...params} placeholder={placeholder} variant="filled" />
+        <MetadataAutoCompleteInput params={params} placeholder={placeholder} />
       )}
       getOptionLabel={({ Symbol, Name }) => `${Symbol} ${Name}`}
       onChange={(
@@ -52,12 +45,10 @@ export const MetadataInput: FunctionComponent<{
             dispatchValue({ type: SymbolMetadataActionKind.ADD, payload })
           );
       }}
-      onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue);
-      }}
+      onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
       renderOption={MetadataInputOption}
     />
   );
 };
 
-export default MetadataInput;
+export default MetadataAutoComplete;

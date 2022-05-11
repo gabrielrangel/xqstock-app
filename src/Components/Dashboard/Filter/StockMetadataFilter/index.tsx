@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import FilterCard from "../Common/FilterCard";
 import Options from "./options";
-import MetadataInput from "../Common/MetadataInput";
+import MetadataAutoComplete from "../Common/MetadataAutoComplete";
 import useDashboardContext from "../../../../Hooks/useDashboardContext";
 import { searchByKeyword } from "../../../../Services/XqStockApi/searchByKeyword";
 
@@ -10,7 +10,7 @@ export const StockMetadataFilter: FunctionComponent = () => {
 
   return (
     <FilterCard title={"Ativos"} options={<Options />} grow>
-      <MetadataInput
+      <MetadataAutoComplete
         placeholder={"Ativos"}
         fetchOptions={searchByKeyword}
         valueReducer={stockMetadataReducer}
