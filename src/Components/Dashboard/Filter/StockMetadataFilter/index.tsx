@@ -5,8 +5,12 @@ import MetadataInput from "../Common/MetadataInput";
 import useDashboardContext from "../../../../Hooks/useDashboardContext";
 
 export const StockMetadataFilter: FunctionComponent = () => {
-  const fetchOptions = () => Promise.resolve([]);
   const { stockMetadataReducer } = useDashboardContext();
+
+  const fetchOptions = (str: string) => {
+    console.log(str);
+    return Promise.resolve([]);
+  };
 
   return (
     <FilterCard title={"Ativos"} options={<Options />} grow>
