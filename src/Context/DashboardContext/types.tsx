@@ -1,7 +1,7 @@
-import { Dispatch } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { AssetAction, AssetState } from "../../Reducers/AssetReducer/types";
 
 export interface DashboardContextValue {
   assetsStateReducer: [AssetState, Dispatch<AssetAction>];
-  showInputState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  showInputState: [boolean, Dispatch<SetStateAction<boolean>>];
 }
