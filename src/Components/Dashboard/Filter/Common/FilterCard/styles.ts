@@ -24,5 +24,9 @@ export default styled(Paper)<PaperProps & { grow?: boolean }>`
 
   .content {
     display: flex;
+
+    .MuiAutocomplete-root {
+      flex-grow: 1;
+    }
   }
 `;

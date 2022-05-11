@@ -3,9 +3,9 @@ import Box from "@mui/system/Box";
 import { FunctionComponent } from "react";
 import StyledPaper from "./styles";
 import FilterCardProps from "./types";
+import AssetsInput from "../AssetsInput";
 
 export const DashboardFilterCard: FunctionComponent<FilterCardProps> = ({
-  children,
   title,
   options,
   grow,
@@ -17,7 +17,9 @@ export const DashboardFilterCard: FunctionComponent<FilterCardProps> = ({
       </Typography>
       <Box className="options">{options}</Box>
     </Box>
-    <Box className="content">{children}</Box>
+    <Box className="content">
+      <AssetsInput options={["a", "b"]} placeholder={"placeholder"} />
+    </Box>
   </StyledPaper>
 );
 

@@ -3,9 +3,7 @@ import { FunctionComponent } from "react";
 import FilterCard from "../Common/FilterCard";
 
 export const DateFilter: FunctionComponent = () => (
-  <FilterCard title={"Período"} options={<Button />}>
-    <>Ola</>
-  </FilterCard>
+  <FilterCard title={"Período"} options={<Button />} />
 );
 
 export default DateFilter;
