@@ -40,7 +40,7 @@ export const MetadataInput: FunctionComponent<{
       renderInput={(params) => (
         <TextField {...params} placeholder={placeholder} variant="filled" />
       )}
-      getOptionLabel={({ Symbol }) => Symbol}
+      getOptionLabel={({ Symbol, Name }) => `${Symbol} ${Name}`}
       onChange={(
         event: SyntheticEvent<Element, Event>,
         newValue: ISymbolMetadata[]
