@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
-import FilterCard from "../Common/FilterCard";
+import FilterCard from "../FilterCard";
 import Options from "./options";
-import MetadataAutoComplete from "../Common/MetadataAutoComplete";
+import MetadataAutoComplete from "../MetadataAutoComplete";
 import useDashboardContext from "../../../../Hooks/useDashboardContext";
 import { searchByKeyword } from "../../../../Services/XqStockApi/searchByKeyword";
 

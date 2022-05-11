@@ -1,13 +1,19 @@
 import Autocomplete from "@mui/material/Autocomplete";
 
-import { FunctionComponent, SyntheticEvent, useEffect, useState } from "react";
+import {
+  FunctionComponent,
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 import {
   SymbolMetadataActionKind,
   SymbolMetadataState,
-} from "../../../../../Reducers/SymbolMetadataReducer";
+} from "../../../../Reducers/SymbolMetadataReducer";
 
-import { ISymbolMetadata } from "../../../../../Services/XqStockApi/types";
+import { ISymbolMetadata } from "../../../../Services/XqStockApi/types";
 import MetadataInputOption from "./Option";
 import MetadataAutoCompleteProps from "./types";
 import MetadataAutoCompleteInput from "./Input";
@@ -25,6 +31,20 @@ export const MetadataAutoComplete: FunctionComponent<
     }
   }, [fetchOptions, inputValue]);
 
+  const onChange = useCallback(
+    (event: SyntheticEvent<Element, Event>, newValue: ISymbolMetadata[]) => {
+      newValue
+        ?.filter(
+          ({ Symbol }) =>
+            !value.some((v: ISymbolMetadata) => v.Symbol === Symbol)
+        )
+        .forEach((payload) =>
+          dispatchValue({ type: SymbolMetadataActionKind.ADD, payload })
+        );
+    },
+    [dispatchValue, value]
+  );
+
   return (
     <Autocomplete
       disablePortal
@@ -35,16 +55,7 @@ export const MetadataAutoComplete: FunctionComponent<
         <MetadataAutoCompleteInput params={params} placeholder={placeholder} />
       )}
       getOptionLabel={({ Symbol, Name }) => `${Symbol} ${Name}`}
-      onChange={(
-        event: SyntheticEvent<Element, Event>,
-        newValue: ISymbolMetadata[]
-      ) => {
-        newValue
-          ?.filter(({ Symbol }) => !value.some((v) => v.Symbol === Symbol))
-          .forEach((payload) =>
-            dispatchValue({ type: SymbolMetadataActionKind.ADD, payload })
-          );
-      }}
+      onChange={onChange}
       onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
       renderOption={MetadataInputOption}
     />
