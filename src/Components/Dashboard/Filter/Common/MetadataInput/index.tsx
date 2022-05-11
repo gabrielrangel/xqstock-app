@@ -15,6 +15,7 @@ import {
   SymbolMetadataState,
 } from "../../../../../Reducers/SymbolMetadataReducer";
 import { ISymbolMetadata } from "../../../../../Services/XqStockApi/types";
+import MetadataInputOption from "./Option";
 
 export const MetadataInput: FunctionComponent<{
   placeholder: string;
@@ -54,6 +55,7 @@ export const MetadataInput: FunctionComponent<{
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
       }}
+      renderOption={MetadataInputOption}
     />
   );
 };
