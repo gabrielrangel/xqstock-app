@@ -1,7 +1,19 @@
+import {
+  SymbolMetadataAction,
+  SymbolMetadataState,
+} from "../../Reducers/SymbolMetadataReducer";
 import { Dispatch, SetStateAction } from "react";
-import { AssetAction, AssetState } from "../../Reducers/AssetReducer/types";
+
+export interface ITimeIntervalState {
+  startDate: Date;
+  endDate: Date;
+}
 
 export interface DashboardContextValue {
-  assetsStateReducer: [AssetState, Dispatch<AssetAction>];
-  showInputState: [boolean, Dispatch<SetStateAction<boolean>>];
+  stockMetadataReducer: [SymbolMetadataState, Dispatch<SymbolMetadataAction>];
+  indexMetadataReducer: [SymbolMetadataState, Dispatch<SymbolMetadataAction>];
+  timeIntervalState: [
+    ITimeIntervalState | undefined,
+    Dispatch<SetStateAction<ITimeIntervalState | undefined>>
+  ];
 }

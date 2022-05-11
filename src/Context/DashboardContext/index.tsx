@@ -5,9 +5,12 @@ import {
   useReducer,
   useState,
 } from "react";
-import { DashboardContextValue } from "./types";
-import { assetReducer } from "../../Reducers/AssetReducer";
-import { AssetState } from "../../Reducers/AssetReducer/types";
+
+import { DashboardContextValue, ITimeIntervalState } from "./types";
+
+import symbolMetadataReducer, {
+  SymbolMetadataReducer,
+} from "../../Reducers/SymbolMetadataReducer";
 
 export const DashboardContext = createContext<DashboardContextValue>(
   {} as DashboardContextValue
@@ -16,11 +19,22 @@ export const DashboardContext = createContext<DashboardContextValue>(
 export const DashboardContextProvider: FunctionComponent<{
   children: ReactNode;
 }> = ({ children }) => {
-  const assetsStateReducer = useReducer(assetReducer, {} as AssetState);
-  const showInputState = useState<boolean>(false);
+  const stockMetadataReducer = useReducer<SymbolMetadataReducer>(
+    symbolMetadataReducer,
+    []
+  );
+
+  const indexMetadataReducer = useReducer<SymbolMetadataReducer>(
+    symbolMetadataReducer,
+    []
+  );
+
+  const timeIntervalState = useState<ITimeIntervalState>();
 
   return (
-    <DashboardContext.Provider value={{ assetsStateReducer, showInputState }}>
+    <DashboardContext.Provider
+      value={{ stockMetadataReducer, indexMetadataReducer, timeIntervalState }}
+    >
       {children}
     </DashboardContext.Provider>
   );
