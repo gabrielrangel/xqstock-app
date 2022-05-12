@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import styled from "@mui/material/styles/styled";
 
 export default styled(Grid)<GainOptions>`
-  .MuiGrid-item {
+  > .MuiGrid-item {
     height: 100vh;
   }
 

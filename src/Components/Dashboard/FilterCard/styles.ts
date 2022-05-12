@@ -5,7 +5,7 @@ import getOppositePaletteMode from "src/Util/getOppositePaletteMode";
 export default styled(Paper, {
   shouldForwardProp: (prop) => prop !== "grow",
 })<PaperProps & { grow?: boolean }>`
-  flex-grow: ${({ grow = false }) => (grow ? 2 : 1)};
+  flex: 1;
   padding: ${({ theme }) => theme.spacing(2)};
   display: flex;
   flex-direction: column;
