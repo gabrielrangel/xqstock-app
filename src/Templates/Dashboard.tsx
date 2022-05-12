@@ -1,5 +1,4 @@
 import { FunctionComponent } from "react";
-import Box from "@mui/material/Box";
 
 import {
   DashboardFilterGroup,
@@ -7,15 +6,16 @@ import {
   StockMetadataFilter,
 } from "src/Components/Dashboard";
 import DashboardContextProvider from "../Context/DashboardContext";
+import { Stack } from "@mui/material";
 
 export const Dashboard: FunctionComponent = () => (
   <DashboardContextProvider>
-    <Box>
+    <Stack spacing={2}>
       <DashboardFilterGroup>
         <StockMetadataFilter />
         <DateIntervalFilter />
       </DashboardFilterGroup>
-    </Box>
+    </Stack>
   </DashboardContextProvider>
 );
 

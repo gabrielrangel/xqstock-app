@@ -8,10 +8,10 @@ export const PageGrid: FunctionComponent<{ children: ReactNode }> = ({
   children,
 }) => (
   <StyledGrid container spacing={0}>
-    <Grid item md={2} component={"aside"}>
+    <Grid item sm={3} md={2} component={"aside"}>
       <Sidebar />
     </Grid>
-    <Grid item md={10} component={"main"}>
+    <Grid item sm={9} md={10} component={"main"}>
       <AppBar />
       {children}
     </Grid>

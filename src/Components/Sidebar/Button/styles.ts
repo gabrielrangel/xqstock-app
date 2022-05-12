@@ -15,7 +15,7 @@ export default styled(Button)<
   margin: ${({ theme }) => theme.spacing(1)};
   padding:
     ${({ theme }) => theme.spacing(1.5)} 
-    ${({ theme }) => theme.spacing(2)};
+    ${({ theme }) => theme.spacing(0)};
   
   background-color: ${({ selected, theme }) =>
     selected ? theme.palette.primary[getOppositePaletteMode(theme)] : "none"}15;
