@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 import { BoxProps } from "@mui/material/Box/Box";
-import Box from "./styles";
+import StyledStack from "./styles";
 
 export const SidebarButtonGroup: FunctionComponent<Omit<BoxProps, "sx">> = (
   props
-) => <Box {...props} />;
+) => <StyledStack {...props} spacing={1} />;
 
 export default SidebarButtonGroup;
