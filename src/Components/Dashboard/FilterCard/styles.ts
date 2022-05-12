@@ -7,8 +7,10 @@ export default styled(Paper, {
 })<PaperProps & { grow?: boolean }>`
   flex-grow: ${({ grow = false }) => (grow ? 2 : 1)};
   padding: ${({ theme }) => theme.spacing(2)};
+  display: flex;
+  flex-direction: column;
 
-  .MuiTypography-root {
+  .cardHeader {
     color: ${({ theme }) =>
       theme.palette.secondary[getOppositePaletteMode(theme)]};
     font-family: "Poppins", Verdana, sans-serif;
@@ -17,6 +19,7 @@ export default styled(Paper, {
 
   .header {
     display: flex;
+    padding: ${({ theme }) => theme.spacing(1)} 0;
 
     .options {
       display: flex;
@@ -26,6 +29,10 @@ export default styled(Paper, {
 
   .content {
     display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: ${({ theme }) => theme.spacing(3)};
+    padding: ${({ theme }) => theme.spacing(2)} 0;
 
     .MuiAutocomplete-root {
       flex-grow: 1;

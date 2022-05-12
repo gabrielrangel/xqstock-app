@@ -12,7 +12,7 @@ export const DashboardFilterCard: FunctionComponent<FilterCardProps> = ({
 }) => (
   <StyledPaper elevation={3} grow={grow}>
     <Box className="header">
-      <Typography variant={"h6"} component={"h1"}>
+      <Typography variant={"h6"} component={"h1"} className={"cardHeader"}>
         {title}
       </Typography>
       <Box className="options">{options}</Box>
