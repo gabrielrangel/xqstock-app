@@ -4,4 +4,5 @@ import { styled } from "@mui/system";
 export default styled(Box)`
   display: flex;
   flex-direction: column;
+  padding: ${({ theme }) => theme.spacing(2)} 0;
 `;
