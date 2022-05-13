@@ -24,16 +24,13 @@ export const DashboardContextProvider: FunctionComponent<{
     []
   );
 
-  const indexMetadataReducer = useReducer<SymbolMetadataReducer>(
-    symbolMetadataReducer,
-    []
+  const timeIntervalState = useState<ITimeIntervalState>(
+    {} as ITimeIntervalState
   );
-
-  const timeIntervalState = useState<ITimeIntervalState>();
 
   return (
     <DashboardContext.Provider
-      value={{ stockMetadataReducer, indexMetadataReducer, timeIntervalState }}
+      value={{ stockMetadataReducer, timeIntervalState }}
     >
       {children}
     </DashboardContext.Provider>

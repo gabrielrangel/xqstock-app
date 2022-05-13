@@ -1,21 +1,29 @@
 import Button from "@mui/material/Button";
 import * as React from "react";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useCallback } from "react";
 import FilterCard from "../FilterCard";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import Grid from "@mui/material/Grid";
+import useDashboardContext from "../../../Hooks/useDashboardContext";
 
 export const DateIntervalFilter: FunctionComponent = () => {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date("2014-08-18T21:11:54")
+  const { timeIntervalState } = useDashboardContext();
+  const [{ startDate, endDate }, setTimeInterval] = timeIntervalState;
+
+  const handleStartDateChange = useCallback(
+    (newStartDate: Date | null) =>
+      setTimeInterval({ startDate: newStartDate, endDate }),
+    [endDate, setTimeInterval]
   );
 
-  const handleChange = (newValue: Date | null) => {
-    setValue(newValue);
-  };
+  const handleEndDateChange = useCallback(
+    (newEndDate: Date | null) =>
+      setTimeInterval({ startDate, endDate: newEndDate }),
+    [startDate, setTimeInterval]
+  );
 
   return (
     <Grid item md={5} sm={12}>
@@ -24,15 +32,15 @@ export const DateIntervalFilter: FunctionComponent = () => {
           <DesktopDatePicker
             label="Início"
             inputFormat="MM/dd/yyyy"
-            value={value}
-            onChange={handleChange}
+            value={startDate}
+            onChange={handleStartDateChange}
             renderInput={(params) => <TextField {...params} />}
           />
           <DesktopDatePicker
             label="Fim"
             inputFormat="MM/dd/yyyy"
-            value={value}
-            onChange={handleChange}
+            value={endDate}
+            onChange={handleEndDateChange}
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
