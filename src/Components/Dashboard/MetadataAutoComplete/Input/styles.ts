@@ -7,10 +7,11 @@ export default styled(TextField)`
     height: 100px;
     max-height: 100px;
     overflow-y: auto;
+    flex-grow: 1;
+    flex-basis: 100%;
   }
 
   input {
-    width: 100% !important;
-    min-width: auto !important;
+    flex-grow: 1;
   }
 `;
