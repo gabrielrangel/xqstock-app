@@ -17,7 +17,11 @@ export const SidebarButton: FunctionComponent<SidebarButtonProps> = ({
       onClick={() => navigate(path)}
       {...props}
     >
-      <Typography variant="h6" component="strong" className="button-text">
+      <Typography
+        variant="subtitle1"
+        component="strong"
+        className="button-text"
+      >
         {text}
       </Typography>
     </Button>

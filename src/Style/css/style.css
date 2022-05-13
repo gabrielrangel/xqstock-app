@@ -128,3 +128,23 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+
+*{
+scrollbar-width: thin;
+scrollbar-color: #969696 none;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: none;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background-color: #969696;
+  border: none;
+}

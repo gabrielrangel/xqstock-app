@@ -8,6 +8,12 @@ export const StyledSidebarCard = styled(Card)`
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   background-image: none;
+
+  & .MuiCardContent-root {
+    height: 100%;
+    padding: ${({ theme }) => theme.spacing(5)}
+      ${({ theme }) => theme.spacing(2)};
+  }
 `;
 
 export default StyledSidebarCard;
