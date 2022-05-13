@@ -30,6 +30,7 @@ export default styled(Paper, {
   .content {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     flex-grow: 1;
     gap: ${({ theme }) => theme.spacing(3)};
     padding: ${({ theme }) => theme.spacing(2)} 0;

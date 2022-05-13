@@ -4,7 +4,7 @@ import {
   FunctionComponent,
   SyntheticEvent,
   useCallback,
-  useMemo,
+  useEffect,
   useState,
 } from "react";
 
@@ -15,6 +15,8 @@ import MetadataInputOption from "./Option";
 import MetadataAutoCompleteProps from "./types";
 import MetadataAutoCompleteInput from "./Input";
 import onMetadataAutoCompleteChange from "./onChange";
+import MetadataInputTag from "./Tag";
+import { AutocompleteRenderGetTagProps } from "@mui/material";
 
 export const MetadataAutoComplete: FunctionComponent<
   MetadataAutoCompleteProps
@@ -23,9 +25,13 @@ export const MetadataAutoComplete: FunctionComponent<
   const [inputValue, setInputValue] = useState<string>("");
   const [value] = valueReducer;
 
-  useMemo(() => {
+  useEffect(() => {
     if (inputValue) {
-      fetchOptions(inputValue).then((result) => setOptions(result));
+      fetchOptions(inputValue).then((result) => {
+        if (result.length > 0) {
+          setOptions(result);
+        }
+      });
     }
   }, [fetchOptions, inputValue]);
 
@@ -33,6 +39,14 @@ export const MetadataAutoComplete: FunctionComponent<
     (event: SyntheticEvent<Element, Event>, newValue: ISymbolMetadata[]) =>
       onMetadataAutoCompleteChange(event, newValue, valueReducer),
     [valueReducer]
+  );
+
+  const renderTags = useCallback(
+    (value: ISymbolMetadata[], getTagProps: AutocompleteRenderGetTagProps) =>
+      value.map((option, index) => (
+        <MetadataInputTag {...getTagProps({ index })} option={option} />
+      )),
+    []
   );
 
   return (
@@ -48,6 +62,7 @@ export const MetadataAutoComplete: FunctionComponent<
       onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
       value={value}
       renderOption={MetadataInputOption}
+      renderTags={renderTags}
     />
   );
 };
