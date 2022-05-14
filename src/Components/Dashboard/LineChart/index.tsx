@@ -45,12 +45,12 @@ export const DashboardLineChart: FunctionComponent = () => {
       },
       series,
     }),
-    [series]
+    [series, xAxisData]
   );
 
   return (
     <Container maxWidth="lg">
-      <ReactECharts option={option} />
+      <ReactECharts option={option} notMerge={true} />
     </Container>
   );
 };
