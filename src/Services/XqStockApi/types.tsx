@@ -9,3 +9,14 @@ export interface ISymbolMetadata {
   Currency: string;
   Matchscore: string;
 }
+
+export interface ISymbolTimeSerie {
+  Symbol: string;
+  Date: string;
+  Open: string;
+  High: string;
+  Low: string;
+  Close: string;
+  Volume: string;
+  Kind: string;
+}

@@ -13,15 +13,22 @@ if (!REACT_APP_XQSTOCK_API_TOKEN) {
 export async function sendRequest(
   path: string,
   method: string,
-  _body: Record<string, unknown> = {}
+  body: Record<string, unknown> = {}
 ) {
   const headers = new Headers();
   headers.append("x-access-token", REACT_APP_XQSTOCK_API_TOKEN ?? "");
+  headers.append("content-type", "application/json");
 
-  const response = await fetch(`${REACT_APP_XQSTOCK_API_URI}/${path}`, {
+  const init: Record<string, string | Headers> = {
     method,
     headers,
-  });
+  };
+
+  if (method === "POST") {
+    init.body = JSON.stringify(body);
+  }
+
+  const response = await fetch(`${REACT_APP_XQSTOCK_API_URI}/${path}`, init);
 
   const { data } = await response.json();
 
