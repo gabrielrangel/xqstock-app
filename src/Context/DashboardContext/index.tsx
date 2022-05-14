@@ -24,9 +24,10 @@ export const DashboardContextProvider: FunctionComponent<{
     []
   );
 
-  const timeIntervalState = useState<ITimeIntervalState>(
-    {} as ITimeIntervalState
-  );
+  const timeIntervalState = useState<ITimeIntervalState>({
+    startDate: new Date(),
+    endDate: new Date(),
+  } as ITimeIntervalState);
 
   return (
     <DashboardContext.Provider

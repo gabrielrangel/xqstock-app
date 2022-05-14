@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 
 import {
   DashboardFilterGroup,
+  DashboardLineChart,
   DateIntervalFilter,
   StockMetadataFilter,
 } from "src/Components/Dashboard";
@@ -15,6 +16,7 @@ export const Dashboard: FunctionComponent = () => (
         <StockMetadataFilter />
         <DateIntervalFilter />
       </DashboardFilterGroup>
+      <DashboardLineChart />
     </Stack>
   </DashboardContextProvider>
 );
