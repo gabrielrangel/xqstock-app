@@ -1,6 +1,7 @@
 export interface ILLineChartSeriesItem {
   name: string;
   type: string;
-  stack: string;
   data: number[];
+  stack?: string;
+  smooth?: boolean;
 }

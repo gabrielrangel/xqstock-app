@@ -14,7 +14,8 @@ export const DashboardLineChart: FunctionComponent = () => {
   const [stockMetadata] = stockMetadataReducer;
 
   useEffect(
-    () => updateOptionState(timeInterval, stockMetadata, setSeries),
+    () =>
+      updateOptionState(timeInterval, stockMetadata, setSeries, setXAxisData),
     [timeInterval, stockMetadata]
   );
 
@@ -37,7 +38,7 @@ export const DashboardLineChart: FunctionComponent = () => {
       xAxis: {
         type: "category",
         boundaryGap: false,
-        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        data: xAxisData,
       },
       yAxis: {
         type: "value",
