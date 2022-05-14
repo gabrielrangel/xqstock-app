@@ -1,4 +1,4 @@
-export interface ILineChartOption {
+export interface ILLineChartSeriesItem {
   name: string;
   type: string;
   stack: string;

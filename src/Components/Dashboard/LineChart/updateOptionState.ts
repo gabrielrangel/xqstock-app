@@ -1,13 +1,13 @@
 import { ITimeIntervalState } from "../../../Context/DashboardContext/types";
 import { SymbolMetadataState } from "../../../Reducers/SymbolMetadataReducer";
-import { ILineChartOption } from "./types";
+import { ILLineChartSeriesItem } from "./types";
 import getIntradayTimeseries from "../../../Services/XqStockApi/getIntradayTimeseries";
 import { Dispatch, SetStateAction } from "react";
 
 export function updateOptionState(
   timeInterval: ITimeIntervalState,
   stockMetadata: SymbolMetadataState,
-  setOptions: Dispatch<SetStateAction<ILineChartOption[] | undefined>>
+  setSeries: Dispatch<SetStateAction<ILLineChartSeriesItem[] | undefined>>
 ) {
   getIntradayTimeseries(stockMetadata, timeInterval)
     .then((result) =>
@@ -45,7 +45,7 @@ export function updateOptionState(
         }, {} as Record<string, number[]>)
     )
     .then((options) =>
-      setOptions(
+      setSeries(
         Object.entries(options).map(([name, data]) => ({
           name,
           data,
