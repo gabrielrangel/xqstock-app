@@ -18,31 +18,15 @@ import MetadataAutoCompleteInput from "./Input";
 import onMetadataAutoCompleteChange from "./onChange";
 import MetadataInputTag from "./Tag";
 import { AutocompleteRenderGetTagProps } from "@mui/material";
+import updateOptions from "./updateOptions";
 
 export const MetadataAutoComplete: FunctionComponent<
   MetadataAutoCompleteProps
-> = ({ placeholder, fetchOptions, valueReducer }) => {
+> = ({ placeholder, valueReducer }) => {
   const [options, setOptions] = useState<SymbolMetadataState>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const prevInputValueRef = useRef<string>();
   const [value] = valueReducer;
-
-  const updateOptions = useCallback(
-    (inputValue: string) => {
-      fetchOptions(inputValue).then((newOptions) => {
-        const filteredNewOptions = newOptions.filter(
-          (o) => !options.some(({ Symbol }) => Symbol === o.Symbol)
-        );
-
-        const mergedOptions = [...filteredNewOptions, ...options].sort((a, b) =>
-          a.Symbol.localeCompare(b.Symbol)
-        );
-
-        setOptions(mergedOptions);
-      });
-    },
-    [fetchOptions, options]
-  );
 
   const onChange = useCallback(
     (event: SyntheticEvent<Element, Event>, newValue: ISymbolMetadata[]) =>
@@ -60,11 +44,11 @@ export const MetadataAutoComplete: FunctionComponent<
 
   useEffect(() => {
     if (prevInputValueRef.current !== inputValue) {
-      updateOptions(inputValue);
+      updateOptions(inputValue, options, setOptions);
     }
 
     prevInputValueRef.current = inputValue;
-  }, [inputValue, updateOptions]);
+  }, [inputValue, options]);
 
   return (
     <Autocomplete
