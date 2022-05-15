@@ -11,8 +11,9 @@ import { IDateErrorInterface } from "./types";
 import { validateDates } from "./validateDates";
 
 export const DateIntervalFilter: FunctionComponent = () => {
-  const { timeIntervalState } = useDashboardContext();
+  const { timeIntervalState, hasErrorState } = useDashboardContext();
   const [{ startDate, endDate }, setTimeInterval] = timeIntervalState;
+  const [, setHasError] = hasErrorState;
 
   const [endDateError, setEndDateError] = useState<IDateErrorInterface>({
     hasError: false,
@@ -33,8 +34,6 @@ export const DateIntervalFilter: FunctionComponent = () => {
 
   const handleEndDateChange = useCallback(
     (newEndDate: Date | null) => {
-      setStartDateError({ hasError: false });
-      setEndDateError({ hasError: false });
       setTimeInterval({ startDate, endDate: newEndDate });
     },
     [startDate, setTimeInterval]
@@ -43,6 +42,11 @@ export const DateIntervalFilter: FunctionComponent = () => {
   useEffect(
     () => validateDates(startDate, setStartDateError, endDate, setEndDateError),
     [endDate, startDate]
+  );
+
+  useEffect(
+    () => setHasError(startDateError.hasError || endDateError.hasError),
+    [startDateError, endDateError, setHasError]
   );
 
   return (
