@@ -33,8 +33,9 @@ export const DateIntervalFilter: FunctionComponent = () => {
   );
 
   const handleEndDateChange = useCallback(
-    (newEndDate: Date | null) =>
-      setTimeInterval({ startDate, endDate: newEndDate }),
+    (newEndDate: Date | null) => {
+      setTimeInterval({ startDate, endDate: newEndDate });
+    },
     [startDate, setTimeInterval]
   );
 

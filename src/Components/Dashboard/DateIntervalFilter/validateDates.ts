@@ -27,6 +27,18 @@ export function validateDates(
         helperText: "Informe uma data de término",
       });
     // @ts-ignore
+    case isNaN(startTime):
+      return setStartDateError({
+        hasError: true,
+        helperText: "Formato de data inválido",
+      });
+    // @ts-ignore
+    case isNaN(endTime):
+      return setEndDateError({
+        hasError: true,
+        helperText: "Formato de data inválido",
+      });
+    // @ts-ignore
     case endTime < startTime:
       return setEndDateError({
         hasError: true,
