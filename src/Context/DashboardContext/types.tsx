@@ -15,4 +15,5 @@ export interface DashboardContextValue {
     ITimeIntervalState,
     Dispatch<SetStateAction<ITimeIntervalState>>
   ];
+  hasError: [boolean, Dispatch<SetStateAction<boolean>>];
 }
