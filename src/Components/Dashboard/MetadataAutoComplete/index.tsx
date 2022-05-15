@@ -5,6 +5,7 @@ import {
   SyntheticEvent,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -17,23 +18,15 @@ import MetadataAutoCompleteInput from "./Input";
 import onMetadataAutoCompleteChange from "./onChange";
 import MetadataInputTag from "./Tag";
 import { AutocompleteRenderGetTagProps } from "@mui/material";
+import updateOptions from "./updateOptions";
 
 export const MetadataAutoComplete: FunctionComponent<
   MetadataAutoCompleteProps
-> = ({ placeholder, fetchOptions, valueReducer }) => {
+> = ({ placeholder, valueReducer }) => {
   const [options, setOptions] = useState<SymbolMetadataState>([]);
   const [inputValue, setInputValue] = useState<string>("");
+  const prevInputValueRef = useRef<string>();
   const [value] = valueReducer;
-
-  useEffect(() => {
-    if (inputValue) {
-      fetchOptions(inputValue).then((result) => {
-        if (result.length > 0) {
-          setOptions(result);
-        }
-      });
-    }
-  }, [fetchOptions, inputValue]);
 
   const onChange = useCallback(
     (event: SyntheticEvent<Element, Event>, newValue: ISymbolMetadata[]) =>
@@ -48,6 +41,14 @@ export const MetadataAutoComplete: FunctionComponent<
       )),
     []
   );
+
+  useEffect(() => {
+    if (prevInputValueRef.current !== inputValue) {
+      updateOptions(inputValue, options, setOptions);
+    }
+
+    prevInputValueRef.current = inputValue;
+  }, [inputValue, options]);
 
   return (
     <Autocomplete

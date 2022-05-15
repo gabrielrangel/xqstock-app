@@ -3,7 +3,6 @@ import FilterCard from "../FilterCard";
 import Options from "./options";
 import MetadataAutoComplete from "../MetadataAutoComplete";
 import useDashboardContext from "../../../Hooks/useDashboardContext";
-import { searchByKeyword } from "../../../Services/XqStockApi/searchByKeyword";
 import Grid from "@mui/material/Grid";
 
 export const StockMetadataFilter: FunctionComponent = () => {
@@ -14,7 +13,6 @@ export const StockMetadataFilter: FunctionComponent = () => {
       <FilterCard title={"Ativos"} options={<Options />} grow>
         <MetadataAutoComplete
           placeholder={"Ativos"}
-          fetchOptions={searchByKeyword}
           valueReducer={stockMetadataReducer}
         />
       </FilterCard>

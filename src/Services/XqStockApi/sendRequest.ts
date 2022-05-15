@@ -28,11 +28,9 @@ export async function sendRequest(
     init.body = JSON.stringify(body);
   }
 
-  const response = await fetch(`${REACT_APP_XQSTOCK_API_URI}/${path}`, init);
-
-  const { data } = await response.json();
-
-  return data;
+  return fetch(`${REACT_APP_XQSTOCK_API_URI}/${path}`, init)
+    .then((res) => res.json())
+    .then(({ data }) => data);
 }
 
 export default sendRequest;

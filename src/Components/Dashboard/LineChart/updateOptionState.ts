@@ -32,7 +32,6 @@ export function updateOptionState(
           smooth: true,
         }))
       );
-      console.log(options);
     });
 }
 
