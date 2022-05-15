@@ -13,6 +13,10 @@ export function updateOptionState(
   setSeries: Dispatch<SetStateAction<ILLineChartSeriesItem[] | undefined>>,
   setXAxisData: Dispatch<SetStateAction<string[] | undefined>>
 ) {
+  if (stockMetadata.length === 0) {
+    return setSeries([]);
+  }
+
   getIntradayTimeseries(stockMetadata, timeInterval)
     .then(groupTimeseriesByDate)
     .then(getSortedEntries)

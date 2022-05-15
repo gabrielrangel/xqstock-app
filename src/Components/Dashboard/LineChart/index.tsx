@@ -9,15 +9,16 @@ export const DashboardLineChart: FunctionComponent = () => {
   const [series, setSeries] = useState<ILLineChartSeriesItem[]>();
   const [xAxisData, setXAxisData] = useState<string[]>();
 
-  const { timeIntervalState, stockMetadataReducer } = useDashboardContext();
+  const { timeIntervalState, stockMetadataReducer, hasErrorState } =
+    useDashboardContext();
   const [timeInterval] = timeIntervalState;
   const [stockMetadata] = stockMetadataReducer;
+  const [hasError] = hasErrorState;
 
-  useEffect(
-    () =>
-      updateOptionState(timeInterval, stockMetadata, setSeries, setXAxisData),
-    [timeInterval, stockMetadata]
-  );
+  useEffect(() => {
+    hasError ||
+      updateOptionState(timeInterval, stockMetadata, setSeries, setXAxisData);
+  }, [timeInterval, stockMetadata, hasErrorState, hasError]);
 
   const option = useMemo(
     () => ({

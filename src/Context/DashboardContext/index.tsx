@@ -29,11 +29,11 @@ export const DashboardContextProvider: FunctionComponent<{
     endDate: new Date(),
   } as ITimeIntervalState);
 
-  const hasError = useState<boolean>(false);
+  const hasErrorState = useState<boolean>(false);
 
   return (
     <DashboardContext.Provider
-      value={{ stockMetadataReducer, timeIntervalState, hasError }}
+      value={{ stockMetadataReducer, timeIntervalState, hasErrorState }}
     >
       {children}
     </DashboardContext.Provider>
