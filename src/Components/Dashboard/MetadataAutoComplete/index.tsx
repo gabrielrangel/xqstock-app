@@ -5,6 +5,7 @@ import {
   SyntheticEvent,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -23,17 +24,25 @@ export const MetadataAutoComplete: FunctionComponent<
 > = ({ placeholder, fetchOptions, valueReducer }) => {
   const [options, setOptions] = useState<SymbolMetadataState>([]);
   const [inputValue, setInputValue] = useState<string>("");
+  const prevInputValueRef = useRef<string>();
   const [value] = valueReducer;
 
-  useEffect(() => {
-    if (inputValue) {
-      fetchOptions(inputValue).then((result) => {
-        if (result.length > 0) {
-          setOptions(result);
-        }
+  const updateOptions = useCallback(
+    (inputValue: string) => {
+      fetchOptions(inputValue).then((newOptions) => {
+        const filteredNewOptions = newOptions.filter(
+          (o) => !options.some(({ Symbol }) => Symbol === o.Symbol)
+        );
+
+        const mergedOptions = [...filteredNewOptions, ...options].sort((a, b) =>
+          a.Symbol.localeCompare(b.Symbol)
+        );
+
+        setOptions(mergedOptions);
       });
-    }
-  }, [fetchOptions, inputValue]);
+    },
+    [fetchOptions, options]
+  );
 
   const onChange = useCallback(
     (event: SyntheticEvent<Element, Event>, newValue: ISymbolMetadata[]) =>
@@ -48,6 +57,14 @@ export const MetadataAutoComplete: FunctionComponent<
       )),
     []
   );
+
+  useEffect(() => {
+    if (prevInputValueRef.current !== inputValue) {
+      updateOptions(inputValue);
+    }
+
+    prevInputValueRef.current = inputValue;
+  }, [inputValue, updateOptions]);
 
   return (
     <Autocomplete
