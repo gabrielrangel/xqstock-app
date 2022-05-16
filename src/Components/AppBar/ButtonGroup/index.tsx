@@ -1,8 +1,10 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent } from "react";
 import StyledBox from "./styles";
+import { ButtonGroupProps } from "./types";
 
-export const ButtonGroup: FunctionComponent<{ children?: ReactNode }> = ({
+export const ButtonGroup: FunctionComponent<ButtonGroupProps> = ({
   children,
-}) => <StyledBox>{children}</StyledBox>;
+  ...props
+}) => <StyledBox {...props}>{children}</StyledBox>;
 
 export default ButtonGroup;

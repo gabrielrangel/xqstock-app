@@ -9,4 +9,10 @@ export default styled(Grid)<GainOptions>`
   main {
     overflow-y: auto;
   }
+
+  ${({ theme }) => theme.breakpoints.down("sm")} {
+    .MuiGrid-item {
+      width: 100%;
+    }
+  }
 `;

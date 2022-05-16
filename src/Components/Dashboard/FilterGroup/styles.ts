@@ -8,4 +8,10 @@ export default styled(Box)<BoxProps>`
   & .MuiGrid-item {
     display: flex;
   }
+
+  ${({ theme }) => theme.breakpoints.down("sm")} {
+    .MuiGrid-item {
+      width: 100%;
+    }
+  }
 `;
