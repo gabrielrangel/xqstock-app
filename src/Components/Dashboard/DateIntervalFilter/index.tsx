@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import FilterCard from "../FilterCard";
 import TextField from "@mui/material/TextField";
@@ -51,7 +50,7 @@ export const DateIntervalFilter: FunctionComponent = () => {
 
   return (
     <Grid item md={5} sm={12}>
-      <FilterCard title={"Período"} options={<Button />}>
+      <FilterCard title={"Período"}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             label="Início"

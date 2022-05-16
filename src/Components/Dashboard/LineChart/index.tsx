@@ -4,6 +4,9 @@ import useDashboardContext from "../../../Hooks/useDashboardContext";
 import { ILLineChartSeriesItem } from "./types";
 import { updateOptionState } from "./updateOptionState";
 import ReactECharts from "echarts-for-react";
+import { Typography } from "@mui/material";
+import getOppositePaletteMode from "../../../Util/getOppositePaletteMode";
+import useThemeContext from "../../../Hooks/useThemeContext";
 
 export const DashboardLineChart: FunctionComponent = () => {
   const [series, setSeries] = useState<ILLineChartSeriesItem[]>();
@@ -14,6 +17,8 @@ export const DashboardLineChart: FunctionComponent = () => {
   const [timeInterval] = timeIntervalState;
   const [stockMetadata] = stockMetadataReducer;
   const [hasError] = hasErrorState;
+
+  const { theme } = useThemeContext();
 
   useEffect(() => {
     hasError ||
@@ -51,6 +56,18 @@ export const DashboardLineChart: FunctionComponent = () => {
 
   return (
     <Container maxWidth="lg">
+      <Typography
+        variant={"h6"}
+        component={"h1"}
+        className={"cardHeader"}
+        sx={{
+          color: theme.palette.secondary[getOppositePaletteMode(theme)],
+          fontFamily: '"Poppins", Verdana, sans-serif',
+          padding: `${theme.spacing(3)} 0`,
+        }}
+      >
+        Fechamento x dia
+      </Typography>
       <ReactECharts option={option} notMerge={true} />
     </Container>
   );
