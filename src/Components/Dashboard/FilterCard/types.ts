@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export interface FilterCardProps {
   title: string;
-  options: ReactNode;
+  options?: ReactNode;
   grow?: boolean;
   children: ReactNode;
 }
