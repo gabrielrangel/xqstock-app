@@ -22,7 +22,11 @@ export function updateOptionState(
     .then(getSortedEntries)
     .then((timeseries) => {
       setXAxisData(
-        timeseries.map(([date]) => new Date(date).toLocaleDateString())
+        timeseries.map(([date]) => {
+          const [isoDateStr] = new Date(date).toISOString().split("T");
+          const [yyyy, mm, dd] = isoDateStr.split("-");
+          return `${dd}/${mm}/${yyyy}`;
+        })
       );
 
       return getValuesAsArray(timeseries);

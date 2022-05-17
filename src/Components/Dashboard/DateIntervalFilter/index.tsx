@@ -1,4 +1,10 @@
-import { FunctionComponent, useCallback, useEffect, useState } from "react";
+import {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import FilterCard from "../FilterCard";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -12,28 +18,34 @@ import { validateDates } from "./validateDates";
 export const DateIntervalFilter: FunctionComponent = () => {
   const { timeIntervalState, hasErrorState } = useDashboardContext();
   const [{ startDate, endDate }, setTimeInterval] = timeIntervalState;
+  const prevStartDate = useRef(startDate);
+  const prevEndDate = useRef(endDate);
   const [, setHasError] = hasErrorState;
-
   const [endDateError, setEndDateError] = useState<IDateErrorInterface>({
     hasError: false,
   });
-
   const [startDateError, setStartDateError] = useState<IDateErrorInterface>({
     hasError: false,
   });
 
   const handleStartDateChange = useCallback(
     (newStartDate: Date | null) => {
-      setStartDateError({ hasError: false });
-      setEndDateError({ hasError: false });
-      setTimeInterval({ startDate: newStartDate, endDate });
+      if (newStartDate?.getTime() !== prevStartDate.current?.getTime()) {
+        setStartDateError({ hasError: false });
+        setEndDateError({ hasError: false });
+        setTimeInterval({ startDate: newStartDate, endDate });
+      }
+      prevStartDate.current = newStartDate;
     },
     [endDate, setTimeInterval]
   );
 
   const handleEndDateChange = useCallback(
     (newEndDate: Date | null) => {
-      setTimeInterval({ startDate, endDate: newEndDate });
+      if (newEndDate?.getTime() !== prevEndDate.current?.getTime()) {
+        setTimeInterval({ startDate, endDate: newEndDate });
+      }
+      prevEndDate.current = newEndDate;
     },
     [startDate, setTimeInterval]
   );
