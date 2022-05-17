@@ -7,6 +7,7 @@ import ReactECharts from "echarts-for-react";
 import { Typography } from "@mui/material";
 import getOppositePaletteMode from "../../../Util/getOppositePaletteMode";
 import useThemeContext from "../../../Hooks/useThemeContext";
+import Box from "@mui/material/Box";
 
 export const DashboardLineChart: FunctionComponent = () => {
   const [series, setSeries] = useState<ILLineChartSeriesItem[]>();
@@ -55,21 +56,23 @@ export const DashboardLineChart: FunctionComponent = () => {
   );
 
   return (
-    <Container maxWidth="lg">
-      <Typography
-        variant={"h6"}
-        component={"h1"}
-        className={"cardHeader"}
-        sx={{
-          color: theme.palette.secondary[getOppositePaletteMode(theme)],
-          fontFamily: '"Poppins", Verdana, sans-serif',
-          padding: `${theme.spacing(3)} 0`,
-        }}
-      >
-        Fechamento x dia
-      </Typography>
-      <ReactECharts option={option} notMerge={true} />
-    </Container>
+    <Box>
+      <Container maxWidth="lg">
+        <Typography
+          variant={"h6"}
+          component={"h1"}
+          className={"cardHeader"}
+          sx={{
+            color: theme.palette.secondary[getOppositePaletteMode(theme)],
+            fontFamily: '"Poppins", Verdana, sans-serif',
+            padding: `${theme.spacing(3)} 0`,
+          }}
+        >
+          Fechamento x dia
+        </Typography>
+        <ReactECharts option={option} notMerge={true} />
+      </Container>
+    </Box>
   );
 };
 
