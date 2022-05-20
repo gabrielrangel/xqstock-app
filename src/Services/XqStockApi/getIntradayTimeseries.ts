@@ -21,8 +21,7 @@ export async function getIntradayTimeseries(
     endDate,
     startDate,
   }).then(({ data, status }) => {
-    const { timeseries } = data;
-    return [timeseries, status];
+    return [data, status];
   });
 }
 

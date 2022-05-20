@@ -5,8 +5,7 @@ export async function searchByKeyword(
   keyword: string
 ): Promise<[ISymbolMetadata[], number]> {
   return sendRequest(`api/stock/metadata/search/${keyword}`, "GET").then(
-    ({ data, status }) => {
-      const { metadata } = data;
+    ({ data: metadata, status }) => {
       return [metadata, status];
     }
   );
