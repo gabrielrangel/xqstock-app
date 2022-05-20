@@ -8,7 +8,7 @@ export function updateOptions(
   setOptions: Dispatch<SetStateAction<SymbolMetadataState>>
 ) {
   if (inputValue) {
-    fetchOptions(inputValue).then((newOptions) => {
+    fetchOptions(inputValue).then(([newOptions]) => {
       const filteredNewOptions = newOptions.filter(
         (o) => !options.some(({ Symbol }) => Symbol === o.Symbol)
       );

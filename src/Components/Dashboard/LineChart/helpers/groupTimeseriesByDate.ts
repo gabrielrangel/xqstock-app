@@ -1,6 +1,8 @@
 import { GetIntradayTimeSeriesResponse } from "../../../../Services/XqStockApi/getIntradayTimeseries";
 
-export const groupTimeseriesByDate = (result: GetIntradayTimeSeriesResponse) =>
+export const groupTimeseriesByDate = ([
+  result,
+]: GetIntradayTimeSeriesResponse) =>
   result.reduce(
     (acc, { timeseries }) =>
       timeseries.reduce((obj, { Date, Symbol, Close }) => {
