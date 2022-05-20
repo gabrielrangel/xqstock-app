@@ -31,10 +31,7 @@ export async function sendRequest(
   const response = await fetch(`${REACT_APP_XQSTOCK_API_URI}/${path}`, init);
   const { data } = await response.json();
 
-  return [
-    data,
-    data.status !== 200 ? () => sendRequest(path, method, body) : undefined,
-  ];
+  return { data, status: response.status };
 }
 
 export default sendRequest;

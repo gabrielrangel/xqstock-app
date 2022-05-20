@@ -3,9 +3,12 @@ import { ISymbolMetadata } from "./types";
 
 export async function searchByKeyword(
   keyword: string
-): Promise<ISymbolMetadata[]> {
+): Promise<[ISymbolMetadata[], number]> {
   return sendRequest(`api/stock/metadata/search/${keyword}`, "GET").then(
-    ({ metadata } = { metadata: [] }) => metadata
+    ({ data, status }) => {
+      const { metadata } = data;
+      return [metadata, status];
+    }
   );
 }
 
