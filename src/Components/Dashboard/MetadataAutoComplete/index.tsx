@@ -29,8 +29,11 @@ export const MetadataAutoComplete: FunctionComponent<
   const [value] = valueReducer;
 
   const onChange = useCallback(
-    (event: SyntheticEvent<Element, Event>, newValue: ISymbolMetadata[]) =>
-      onMetadataAutoCompleteChange(event, newValue, valueReducer),
+    (
+      event: SyntheticEvent<Element, Event>,
+      newValue: ISymbolMetadata[],
+      reason: string
+    ) => onMetadataAutoCompleteChange(event, newValue, valueReducer, reason),
     [valueReducer]
   );
 
