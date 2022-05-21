@@ -1,8 +1,14 @@
-import { GetIntradayTimeSeriesResponse } from "../../../../Services/XqStockApi/getIntradayTimeseries";
+import {
+  ISymbolMetadata,
+  ISymbolTimeSerie,
+} from "../../../../Services/XqStockApi/types";
 
-export const groupTimeseriesByDate = ([
-  result,
-]: GetIntradayTimeSeriesResponse) =>
+export const groupTimeseriesByDate = (
+  result: {
+    metadata: ISymbolMetadata;
+    timeseries: ISymbolTimeSerie[];
+  }[]
+) =>
   result.reduce(
     (acc, { timeseries }) =>
       timeseries.reduce((obj, { Date, Symbol, Close }) => {

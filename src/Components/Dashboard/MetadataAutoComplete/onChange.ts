@@ -12,8 +12,7 @@ export function onMetadataAutoCompleteChange(
   [value, dispatchValue]: [SymbolMetadataState, Dispatch<SymbolMetadataAction>],
   reason: string
 ) {
-  console.log(reason);
-  if (reason !== "removeOption") {
+  if (reason !== "removeOption" || event.type === "click") {
     newValue
       .filter((i) => !value.some((v) => v.Symbol === i.Symbol))
       .forEach((payload) =>

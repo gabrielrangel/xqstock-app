@@ -9,6 +9,7 @@ import getOppositePaletteMode from "../../../Util/getOppositePaletteMode";
 import useThemeContext from "../../../Hooks/useThemeContext";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/system/Box";
+import getConfig from "./config";
 
 export const DashboardLineChart: FunctionComponent = () => {
   const [series, setSeries] = useState<ILLineChartSeriesItem[]>();
@@ -23,36 +24,23 @@ export const DashboardLineChart: FunctionComponent = () => {
   const { theme } = useThemeContext();
 
   useEffect(() => {
-    hasError ||
-      updateOptionState(timeInterval, stockMetadata, setSeries, setXAxisData);
+    const fetchOption = async () => {
+      const result = await updateOptionState(timeInterval, stockMetadata);
+
+      if (!result) {
+        return;
+      }
+
+      const { xAxisData, series } = result;
+      setXAxisData(xAxisData);
+      setSeries(series);
+    };
+
+    !hasError && fetchOption().catch(console.error);
   }, [timeInterval, stockMetadata, hasErrorState, hasError]);
 
   const option = useMemo(
-    () => ({
-      tooltip: {
-        trigger: "axis",
-      },
-      grid: {
-        left: "3%",
-        right: "4%",
-        bottom: "3%",
-        containLabel: true,
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {},
-        },
-      },
-      xAxis: {
-        type: "category",
-        boundaryGap: false,
-        data: xAxisData,
-      },
-      yAxis: {
-        type: "value",
-      },
-      series,
-    }),
+    () => getConfig(series, xAxisData),
     [series, xAxisData]
   );
 

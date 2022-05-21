@@ -1,46 +1,38 @@
 import { ITimeIntervalState } from "../../../Context/DashboardContext/types";
 import { SymbolMetadataState } from "../../../Reducers/SymbolMetadataReducer";
-import { ILLineChartSeriesItem } from "./types";
 import getIntradayTimeseries from "../../../Services/XqStockApi/getIntradayTimeseries";
-import { Dispatch, SetStateAction } from "react";
 import groupTimeseriesByDate from "./helpers/groupTimeseriesByDate";
 import getValuesAsArray from "./helpers/getValuesAsArray";
 import { getSortedEntries } from "./helpers/getSortedEntries";
+import { getFormmatedDates } from "./helpers/getFormmatedDates";
+import { getFormattedChartSeries } from "./helpers/getFormattedChartSeries";
 
-export function updateOptionState(
+export async function updateOptionState(
   timeInterval: ITimeIntervalState,
-  stockMetadata: SymbolMetadataState,
-  setSeries: Dispatch<SetStateAction<ILLineChartSeriesItem[] | undefined>>,
-  setXAxisData: Dispatch<SetStateAction<string[] | undefined>>
+  stockMetadata: SymbolMetadataState
 ) {
   if (stockMetadata.length === 0) {
-    return setSeries([]);
+    return;
   }
 
-  getIntradayTimeseries(stockMetadata, timeInterval)
-    .then(groupTimeseriesByDate)
-    .then(getSortedEntries)
-    .then((timeseries) => {
-      setXAxisData(
-        timeseries.map(([date]) => {
-          const [isoDateStr] = new Date(date).toISOString().split("T");
-          const [yyyy, mm, dd] = isoDateStr.split("-");
-          return `${dd}/${mm}/${yyyy}`;
-        })
-      );
+  const [timeseries, status] = await getIntradayTimeseries(
+    stockMetadata,
+    timeInterval
+  );
 
-      return getValuesAsArray(timeseries);
-    })
-    .then((options) => {
-      setSeries(
-        Object.entries(options).map(([name, data]) => ({
-          name,
-          data,
-          type: "line",
-          smooth: true,
-        }))
-      );
-    });
+  const timeseriesGroupedByDate = groupTimeseriesByDate(timeseries);
+  const sortedTimeseries = getSortedEntries(timeseriesGroupedByDate);
+
+  const xAxisData = getFormmatedDates(sortedTimeseries);
+
+  const chartSeriesArr = getValuesAsArray(sortedTimeseries);
+  const chartSeriesObj = getFormattedChartSeries(chartSeriesArr);
+
+  return {
+    xAxisData,
+    series: chartSeriesObj,
+    status,
+  };
 }
 
 export default updateOptionState;
