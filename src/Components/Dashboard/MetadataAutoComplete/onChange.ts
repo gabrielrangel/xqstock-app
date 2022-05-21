@@ -9,25 +9,28 @@ import {
 export function onMetadataAutoCompleteChange(
   event: SyntheticEvent<Element, Event>,
   newValue: ISymbolMetadata[],
-  [value, dispatchValue]: [SymbolMetadataState, Dispatch<SymbolMetadataAction>]
+  [value, dispatchValue]: [SymbolMetadataState, Dispatch<SymbolMetadataAction>],
+  reason: string
 ) {
-  newValue
-    .filter((i) => !value.some((v) => v.Symbol === i.Symbol))
-    .forEach((payload) =>
-      dispatchValue({
-        type: SymbolMetadataActionKind.ADD,
-        payload,
-      })
-    );
+  if (reason !== "removeOption" || event.type === "click") {
+    newValue
+      .filter((i) => !value.some((v) => v.Symbol === i.Symbol))
+      .forEach((payload) =>
+        dispatchValue({
+          type: SymbolMetadataActionKind.ADD,
+          payload,
+        })
+      );
 
-  value
-    .filter((i) => !newValue.some((v) => v.Symbol === i.Symbol))
-    .forEach((payload) =>
-      dispatchValue({
-        type: SymbolMetadataActionKind.REMOVE,
-        payload,
-      })
-    );
+    value
+      .filter((i) => !newValue.some((v) => v.Symbol === i.Symbol))
+      .forEach((payload) =>
+        dispatchValue({
+          type: SymbolMetadataActionKind.REMOVE,
+          payload,
+        })
+      );
+  }
 }
 
 export default onMetadataAutoCompleteChange;

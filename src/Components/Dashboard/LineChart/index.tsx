@@ -7,7 +7,9 @@ import ReactECharts from "echarts-for-react";
 import { Typography } from "@mui/material";
 import getOppositePaletteMode from "../../../Util/getOppositePaletteMode";
 import useThemeContext from "../../../Hooks/useThemeContext";
-import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/system/Box";
+import getConfig from "./config";
 
 export const DashboardLineChart: FunctionComponent = () => {
   const [series, setSeries] = useState<ILLineChartSeriesItem[]>();
@@ -22,55 +24,43 @@ export const DashboardLineChart: FunctionComponent = () => {
   const { theme } = useThemeContext();
 
   useEffect(() => {
-    hasError ||
-      updateOptionState(timeInterval, stockMetadata, setSeries, setXAxisData);
+    const fetchOption = async () => {
+      const result = await updateOptionState(timeInterval, stockMetadata);
+
+      if (!result) {
+        return;
+      }
+
+      const { xAxisData, series } = result;
+      setXAxisData(xAxisData);
+      setSeries(series);
+    };
+
+    !hasError && fetchOption().catch(console.error);
   }, [timeInterval, stockMetadata, hasErrorState, hasError]);
 
   const option = useMemo(
-    () => ({
-      tooltip: {
-        trigger: "axis",
-      },
-      grid: {
-        left: "3%",
-        right: "4%",
-        bottom: "3%",
-        containLabel: true,
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {},
-        },
-      },
-      xAxis: {
-        type: "category",
-        boundaryGap: false,
-        data: xAxisData,
-      },
-      yAxis: {
-        type: "value",
-      },
-      series,
-    }),
+    () => getConfig(series, xAxisData),
     [series, xAxisData]
   );
 
   return (
     <Box>
       <Container maxWidth="lg">
-        <Typography
-          variant={"h6"}
-          component={"h1"}
-          className={"cardHeader"}
-          sx={{
-            color: theme.palette.secondary[getOppositePaletteMode(theme)],
-            fontFamily: '"Poppins", Verdana, sans-serif',
-            padding: `${theme.spacing(3)} 0`,
-          }}
-        >
-          Fechamento x dia
-        </Typography>
-        <ReactECharts option={option} notMerge={true} />
+        <Stack spacing={3}>
+          <Typography
+            variant={"h6"}
+            component={"h1"}
+            className={"cardHeader"}
+            sx={{
+              color: theme.palette.secondary[getOppositePaletteMode(theme)],
+              fontFamily: '"Poppins", Verdana, sans-serif',
+            }}
+          >
+            Fechamento x dia
+          </Typography>
+          <ReactECharts option={option} notMerge={true} />
+        </Stack>
       </Container>
     </Box>
   );

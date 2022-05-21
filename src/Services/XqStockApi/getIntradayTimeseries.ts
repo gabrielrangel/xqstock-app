@@ -2,10 +2,13 @@ import { ISymbolMetadata, ISymbolTimeSerie } from "./types";
 import { ITimeIntervalState } from "../../Context/DashboardContext/types";
 import sendRequest from "./sendRequest";
 
-export type GetIntradayTimeSeriesResponse = {
-  metadata: ISymbolMetadata;
-  timeseries: ISymbolTimeSerie[];
-}[];
+export type GetIntradayTimeSeriesResponse = [
+  {
+    metadata: ISymbolMetadata;
+    timeseries: ISymbolTimeSerie[];
+  }[],
+  number
+];
 
 export async function getIntradayTimeseries(
   metadata: ISymbolMetadata[],
@@ -17,6 +20,8 @@ export async function getIntradayTimeseries(
     symbol,
     endDate,
     startDate,
+  }).then(({ data, status }) => {
+    return [data, status];
   });
 }
 
